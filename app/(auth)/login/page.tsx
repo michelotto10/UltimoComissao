@@ -53,10 +53,11 @@ export default function LoginPage() {
   }
 
   return (
+    
     <div className="min-h-screen flex items-center justify-center p-6">
       <form onSubmit={handleLogin} className="w-full max-w-sm bg-white/5 border border-white/10 rounded-2xl p-6">
         <h1 className="text-xl font-semibold mb-4">Acesso</h1>
-
+<div className="p-6 bg-red-600 text-white rounded-xl">TAILWIND OK</div>
         <label className="block text-sm mb-1">Email</label>
         <input
           className="w-full rounded-xl p-3 mb-3 bg-black/20 border border-white/10"
@@ -74,7 +75,7 @@ export default function LoginPage() {
           type="password"
           required
         />
-
+          
         {errorMsg && <p className="text-red-400 text-sm mb-3">{errorMsg}</p>}
 
         <button

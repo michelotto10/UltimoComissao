@@ -1,0 +1,6 @@
+import React from "react";
+
+// simple wrapper for /admin. Adjust as needed.
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}
