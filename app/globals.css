@@ -24,3 +24,102 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.18);
 }
+
+
+.container{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.stats{
+display:flex;
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background: black;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+flex:1;
+}
+
+.grid{
+display:grid;
+grid-template-columns:350px 1fr;
+gap:30px;
+}
+
+.formCard{
+background: black;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.formCard form{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+input,select,textarea{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+padding:10px;
+border:none;
+background:#2563eb;
+color:rgb(0, 0, 0);
+border-radius:6px;
+cursor:pointer;
+}
+
+.tableCard{
+background:rgb(0, 0, 0);
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.tableHeader{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #000000;
+text-align:left;
+}
+
+.badge{
+padding:5px 10px;
+border-radius:5px;
+font-size:12px;
+}
+
+.negociando{background:#fde68a}
+.confirmado{background:#93c5fd}
+.recebido{background:#86efac}
+.cancelado{background:#fca5a5}
+
+.edit{
+background:#2563eb;
+margin-right:5px;
+}
+
+.delete{
+background:#ef4444;
+}
