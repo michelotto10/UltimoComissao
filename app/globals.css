@@ -98,7 +98,7 @@ width:100%;
 border-collapse:collapse;
 }
 
-th,td{
+.th,.td{
 padding:10px;
 border-bottom:1px solid #000000;
 text-align:left;
@@ -110,13 +110,13 @@ border-radius:5px;
 font-size:12px;
 }
 
-.negociando{background:#fde68a}
-.confirmado{background:#93c5fd}
-.recebido{background:#86efac}
+.negociando{background:#000000}
+.confirmado{background:#000000}
+.recebido{background:#000000}
 .cancelado{background:#fca5a5}
 
 .edit{
-background:#2563eb;
+background:#000000;
 margin-right:5px;
 }
 

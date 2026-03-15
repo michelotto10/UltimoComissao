@@ -35,19 +35,26 @@ observacoes:""
 })
 
 async function carregar(){
+  const { data, error } = await supabase
+    .from("patrocinadores")
+    .select("*")
+    .order("id", { ascending: false });
 
-const {data} = await supabase
-.from("patrocinadores")
-.select("*")
-.order("id",{ascending:false})
+  if (error) {
+    alert("Erro ao carregar patrocinadores: " + error.message);
+    setLista([]);
+    return;
+  }
 
-setLista(data || [])
-
+  setLista(data || []);
 }
 
-useEffect(()=>{
-carregar()
-},[])
+useEffect(() => {
+  const fetchData = async () => {
+    await carregar();
+  };
+  fetchData();
+}, []);
 
 function limpar(){
 
@@ -78,35 +85,46 @@ return valor
 
 }
 
-async function salvar(e:any){
+async function salvar(e: React.FormEvent<HTMLFormElement>){
 
-e.preventDefault()
+  e.preventDefault();
 
-const valorNumero = Number(form.valor)
+  const valorNumero = Number(form.valor);
 
-if(editando){
+  let errorMsg = "";
 
-await supabase
-.from("patrocinadores")
-.update({
-...form,
-valor:valorNumero
-})
-.eq("id",editando)
+  if (editando) {
+    const { error } = await supabase
+      .from("patrocinadores")
+      .update({
+        ...form,
+        valor: valorNumero
+      })
+      .eq("id", editando);
 
-}else{
+    if (error) {
+      errorMsg = error.message;
+    }
+  } else {
+    const { error } = await supabase
+      .from("patrocinadores")
+      .insert([{
+        ...form,
+        valor: valorNumero
+      }]);
 
-await supabase
-.from("patrocinadores")
-.insert([{
-...form,
-valor:valorNumero
-}])
+    if (error) {
+      errorMsg = error.message;
+    }
+  }
 
-}
+  if (errorMsg) {
+    alert("Erro ao salvar patrocinador: " + errorMsg);
+    return;
+  }
 
-limpar()
-carregar()
+  limpar();
+  carregar();
 
 }
 
