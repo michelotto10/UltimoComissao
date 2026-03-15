@@ -176,8 +176,11 @@ const negociando = lista.filter(p=>p.status=="negociando").length
 return(
 
 <div className="container">
+<div className="painel">
+  
+  <h1>Painel de Patrocinadores</h1>
 
-<h1>Painel de Patrocinadores</h1>
+</div>
 
 <div className="stats">
 
