@@ -119,10 +119,25 @@ border-radius:5px;
 font-size:12px;
 }
 
-.negociando{background:#000000}
-.confirmado{background:#000000}
-.recebido{background:#000000}
-.cancelado{background:#fca5a5}
+.negociando{
+background:#f59e0b;
+color:black;
+}
+
+.confirmado{
+background:#10b981;
+color:white;
+}
+
+.recebido{
+background:#3b82f6;
+color:white;
+}
+
+.cancelado{
+background:#ef4444;
+color:white;
+}
 
 .edit{
 background:#000000;
@@ -143,3 +158,16 @@ background:#ef4444;
   width: fit-content;
   
 }
+
+.backButton{
+  background:#1f2937;
+  color:white;
+  padding:8px 14px;
+  border-radius:6px;
+  margin-bottom:20px;
+  cursor:pointer;
+}
+
+.backButton:hover{
+  background:#2563eb;
+};

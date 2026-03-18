@@ -1,7 +1,9 @@
 'use client'
 
+import Link from "next/link"
 import { useEffect, useState, useMemo } from "react"
 import { supabase } from "@/lib/supabaseClient"
+
 
 type Patrocinador = {
   id:number
@@ -175,12 +177,22 @@ const negociando = lista.filter(p=>p.status=="negociando").length
 
 return(
 
+
 <div className="container">
 <div className="painel">
   
   <h1>Painel de Patrocinadores</h1>
-
 </div>
+
+<div>
+  <Link href="/admin">
+  <button className="backButton">
+    ⬅ Voltar
+  </button>
+</Link>
+</div>
+         
+
 
 <div className="stats">
 
