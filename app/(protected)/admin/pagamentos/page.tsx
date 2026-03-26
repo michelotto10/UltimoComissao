@@ -364,12 +364,7 @@ export default function PagamentosPage() {
           >
             Voltar
           </button>
-          <button
-            onClick={() => router.push("/admin/alunos")}
-            className="rounded-xl px-4 py-2 border border-white/15 hover:bg-zinc-900/60 transition"
-          >
-            Alunos
-          </button>
+        
         </div>
       </div>
 
