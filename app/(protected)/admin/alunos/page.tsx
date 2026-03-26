@@ -30,6 +30,21 @@ export default function AlunosPage() {
     return rows.filter((a) => a.nome.toLowerCase().includes(term) || String(a.id).includes(term));
   }, [rows, q]);
 
+  async function load() {
+    setErr(null);
+    const { data, error } = await supabase
+      .from("alunos")
+      .select("id,nome,turma,ativo,created_at")
+      .order("id", { ascending: true });
+
+    if (error) {
+      setErr(error.message);
+      setRows([]);
+      return;
+    }
+    setRows((data ?? []) as Aluno[]);
+  }
+
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -59,21 +74,6 @@ export default function AlunosPage() {
       alive = false;
     };
   }, [router]);
-
-  async function load() {
-    setErr(null);
-    const { data, error } = await supabase
-      .from("alunos")
-      .select("id,nome,turma,ativo,created_at")
-      .order("id", { ascending: true });
-
-    if (error) {
-      setErr(error.message);
-      setRows([]);
-      return;
-    }
-    setRows((data ?? []) as Aluno[]);
-  }
 
   async function criar(e: React.FormEvent) {
     e.preventDefault();

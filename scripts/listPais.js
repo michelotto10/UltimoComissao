@@ -1,4 +1,5 @@
-const fs = require('fs');
+import fs from 'fs';
+
 const path = 'app/(protected)/pais';
 try {
   const files = fs.readdirSync(path);

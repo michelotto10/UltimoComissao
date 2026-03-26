@@ -4,7 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
-type Aluno = { id: number; nome: string; ativo: boolean };
+type Aluno = {
+  id: number;
+  nome: string;
+  ativo: boolean;
+};
+
 type Pagamento = {
   id: number;
   aluno_id: number;
@@ -13,6 +18,14 @@ type Pagamento = {
   status: "pago" | "pendente" | string;
   pago_em: string | null;
   created_at: string;
+};
+
+type Relatorio = {
+  qtd: number;
+  qtd_pagos: number;
+  qtd_pendentes: number;
+  total: number;
+  total_pago: number;
 };
 
 function monthStartISO(ym: string) {
@@ -76,7 +89,7 @@ export default function PagamentosPage() {
 
   // relatório
   const [relYM, setRelYM] = useState(loteYM);
-  const [rel, setRel] = useState<any>(null);
+  const [rel, setRel] = useState<Relatorio | null>(null);
   const [relLoading, setRelLoading] = useState(false);
 
   const moeda = useMemo(
@@ -431,7 +444,7 @@ export default function PagamentosPage() {
             <select
               className="mt-1 w-full rounded-xl p-3 bg-black/20 border border-white/10"
               value={novoStatus}
-              onChange={(e) => setNovoStatus(e.target.value as any)}
+              onChange={(e) => setNovoStatus(e.target.value as "pendente" | "pago")}
             >
               <option value="pendente">pendente</option>
               <option value="pago">pago</option>
@@ -545,7 +558,7 @@ export default function PagamentosPage() {
           <select
             className="mt-1 rounded-xl p-3 bg-black/20 border border-white/10"
             value={status}
-            onChange={(e) => setStatus(e.target.value as any)}
+            onChange={(e) => setStatus(e.target.value as "todos" | "pago" | "pendente")}
           >
             <option value="todos">todos</option>
             <option value="pendente">pendente</option>

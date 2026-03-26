@@ -277,9 +277,9 @@ export default function FinanceiroPage() {
           <div className="md:col-span-1">
             <label className="text-xs text-zinc-300">Tipo</label>
             <select
-              className="mt-1 w-full rounded-xl p-3 bg-black/20 border bg-zinc-900/60"
+              className="mt-1 w-full rounded-xl p-3 bg-zinc-900/60 border border-white/10"
               value={tipo}
-              onChange={(e) => setTipo(e.target.value as any)}
+              onChange={(e) => setTipo(e.target.value as "entrada" | "saida")}
             >
               <option value="entrada">entrada</option>
               <option value="saida">saida</option>
@@ -358,9 +358,9 @@ export default function FinanceiroPage() {
         <div>
           <label className="text-xs text-zinc-300">Filtrar por tipo     </label>
           <select
-            className="mt-1 rounded-xl p-3 bg-black/20 border bg-zinc-900/60"
+            className="mt-1 rounded-xl p-3 border bg-zinc-900/60"
             value={fTipo}
-            onChange={(e) => setFTipo(e.target.value as any)}
+            onChange={(e) => setFTipo(e.target.value as "todos" | "entrada" | "saida")}
           >
             <option value="todos">todos</option>
             <option value="entrada">entrada</option>
