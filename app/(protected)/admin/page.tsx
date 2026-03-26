@@ -243,6 +243,13 @@ export default function AdminPage() {
           onClick={() => router.push("/admin/patrocinadores")}
           cta="Abrir"
         />
+
+          <ActionCard
+          title="👨‍🎓 Alunos"
+          desc="Gerenciar cadastro e status dos alunos."
+          onClick={() => router.push("/admin/alunos")}
+          cta="Abrir"
+        />
       </div>
 
       {/* Últimas movimentações */}

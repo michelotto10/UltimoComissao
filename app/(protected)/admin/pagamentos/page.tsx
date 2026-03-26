@@ -354,9 +354,7 @@ export default function PagamentosPage() {
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Pagamentos</h1>
-          <p className="text-sm text-zinc-400">
-            Manual + lote + relatório + exportação (somente comissão).
-          </p>
+         
         </div>
 
         <div className="flex gap-2">
