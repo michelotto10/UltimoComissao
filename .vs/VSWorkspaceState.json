@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\(auth)",
+    "\\app\\(protected)",
+    "\\app\\(protected)\\admin",
+    "\\app\\(protected)\\admin\\alunos",
+    "\\lib"
+  ],
+  "SelectedNode": "\\lib\\middleware.ts",
+  "PreviewInSolutionExplorer": false
+}
