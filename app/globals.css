@@ -25,12 +25,13 @@ body {
   background: rgba(255,255,255,0.18);
 }
 
-
+/*
 .container{
-padding:40px;
-max-width:1200px;
-margin:auto;
-}
+width: 100%;
+min-height: 100vh;
+padding: 30px 60px;
+
+}*/
 
 .stats{
 display:flex;

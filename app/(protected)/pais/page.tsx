@@ -123,7 +123,7 @@ export default function PaisPage() {
 
   if (err) {
     return (
-      <div className="max-w-xl mx-auto p-6">
+      <div className="w-full min-h-screen bg-[#0b0f1a] px-10 py-8">
         <h1 className="text-xl font-semibold mb-2">Erro</h1>
         <p className="opacity-80 mb-4">{err}</p>
 
@@ -153,8 +153,7 @@ export default function PaisPage() {
   const totalMensalidades = resumo?.total_mensalidades ?? 0;
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      {/* Header */}
+   <div className="w-full min-h-screen bg-[#0b0f1a] px-10 py-8">
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Painel dos Pais</h1>
