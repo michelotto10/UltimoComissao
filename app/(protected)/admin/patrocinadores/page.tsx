@@ -175,49 +175,56 @@ const confirmados = lista.filter(p=>p.status=="confirmado").length
 
 const negociando = lista.filter(p=>p.status=="negociando").length
 
+
+
 return(
 
-
 <div className="container">
-<div className="painel">
-  
+
+
+<div className="center">
   <h1>Painel de Patrocinadores</h1>
+  <p>Gestão de empresas parceiras</p>
 </div>
 
-<div>
-  <Link href="/admin">
+<div className="pageHeader">
+
+<Link href="/admin">
   <button className="backButton">
     ⬅ Voltar
   </button>
 </Link>
+
 </div>
-         
 
 
 <div className="stats">
 
-<div className="card">
+<div className="statCard">
 <p>Total estimado</p>
 <h2>R$ {total.toLocaleString()}</h2>
 </div>
 
-<div className="card">
+<div className="statCard">
 <p>Confirmados</p>
 <h2>{confirmados}</h2>
 </div>
 
-<div className="card">
+<div className="statCard">
 <p>Negociando</p>
 <h2>{negociando}</h2>
 </div>
 
 </div>
 
+
 <div className="grid">
 
 <div className="formCard">
 
-<h2>{editando ? "Editar patrocinador" : "Novo patrocinador"}</h2>
+<h2>
+{editando ? "Editar patrocinador" : "Novo patrocinador"}
+</h2>
 
 <form onSubmit={salvar}>
 
@@ -281,7 +288,7 @@ value={form.observacoes}
 onChange={e=>setForm({...form,observacoes:e.target.value})}
 />
 
-<button>
+<button className="primaryButton">
 
 {editando ? "Atualizar" : "Cadastrar"}
 
@@ -291,11 +298,15 @@ onChange={e=>setForm({...form,observacoes:e.target.value})}
 
 </div>
 
+
 <div className="tableCard">
 
-<div className="tableHeader">
+<div className="tableTop">
 
+<div>
 <h2>Patrocinadores</h2>
+<p>{lista.length} empresas cadastradas</p>
+</div>
 
 <input
 placeholder="Buscar patrocinador..."
@@ -305,41 +316,68 @@ onChange={e=>setBusca(e.target.value)}
 
 </div>
 
+
 <table>
 
 <thead>
+
 <tr>
+
 <th>Empresa</th>
 <th>Contato</th>
 <th>Valor</th>
 <th>Status</th>
 <th>Ações</th>
+
 </tr>
+
 </thead>
 
 <tbody>
 
 {filtrados.map(p=>(
+
 <tr key={p.id}>
 
-<td>{p.nome}</td>
+<td className="empresa">
+
+<strong>{p.nome}</strong>
+
+<p className="sub">
+{p.oferece}
+</p>
+
+</td>
+
 
 <td>
+
 <p>{p.responsavel}</p>
-<small>{p.telefone}</small>
+
+<p className="sub">
+{p.telefone}
+</p>
+
 </td>
 
-<td>
+
+<td className="valor">
+
 R$ {Number(p.valor || 0).toLocaleString()}
+
 </td>
 
+
 <td>
+
 <span className={"badge "+p.status}>
 {p.status}
 </span>
+
 </td>
 
-<td>
+
+<td className="acoes">
 
 <button
 className="edit"
@@ -358,6 +396,7 @@ Excluir
 </td>
 
 </tr>
+
 ))}
 
 </tbody>
@@ -371,5 +410,4 @@ Excluir
 </div>
 
 )
-
 }

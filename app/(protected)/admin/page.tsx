@@ -200,6 +200,12 @@ export default function AdminPage() {
           value={moeda.format(resumo?.saidas ?? 0)}
           tone="red"
         />
+          <StatCard
+        title="🏢 Patrocínios"
+        value={moeda.format(resumo?.total_patrocinio ?? 0)}
+        tone={(resumo?.saldo ?? 0) >= 0 ? "green" : "red"}
+        />
+      
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">

@@ -15,6 +15,17 @@ type FinanceiroRow = {
   created_at: string;
 };
 
+type ResumoAdmin = {
+  entradas: number;
+  saidas: number;
+  saldo: number;
+  mensalidades_pagas: number;
+  qtd_pagos: number;
+  qtd_pendentes: number;
+  total_patrocinio: number;
+  qtd_patrocinadores: number;
+};
+
 type Role = "admin" | "pais";
 
 function todayISO() {
@@ -32,6 +43,7 @@ export default function FinanceiroPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [resumo, setResumo] = useState<ResumoAdmin | null>(null);
 
   const [rows, setRows] = useState<FinanceiroRow[]>([]);
 
@@ -70,6 +82,19 @@ export default function FinanceiroPage() {
     async function boot() {
       setLoading(true);
       setErr(null);
+      
+      async function loadResumo() {
+  const { data, error } = await supabase
+    .rpc("get_resumo_admin")
+    .single<ResumoAdmin>();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  setResumo(data);
+}
 
       // sessão
       const { data: sessionData, error: sErr } = await supabase.auth.getSession();
@@ -109,6 +134,8 @@ export default function FinanceiroPage() {
       }
 
       await loadRows();
+      await loadResumo();
+
       if (!alive) return;
       setLoading(false);
     }
@@ -122,6 +149,19 @@ export default function FinanceiroPage() {
   }, [router]);
 
   async function loadRows() {
+    
+    async function loadResumo() {
+  const { data, error } = await supabase
+    .rpc("get_resumo_admin")
+    .single<ResumoAdmin>();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  setResumo(data);
+}
     setErr(null);
 
     let query = supabase
@@ -259,13 +299,28 @@ export default function FinanceiroPage() {
       )}
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatCard title="📥 Entradas" value={moeda.format(totals.entradas)} tone="blue" />
-        <StatCard title="📤 Saídas" value={moeda.format(totals.saidas)} tone="red" />
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 height-[120px] width-[500px]">
+        <StatCard 
+        title="📥 Entradas" 
+        value={moeda.format(resumo?.entradas ?? 0)} 
+        tone="blue" />
+
+        <StatCard 
+         title="📤 Saídas" 
+         value={moeda.format(resumo?.saidas ?? 0)} 
+        tone="red" />
+
         <StatCard
-          title="💰 Saldo"
-          value={moeda.format(totals.saldo)}
-          tone={totals.saldo >= 0 ? "green" : "red"}
+         title="💰 Saldo"
+        value={moeda.format(resumo?.saldo ?? 0)}
+        tone={(resumo?.saldo ?? 0) >= 0 ? "green" : "red"}
+        />
+
+        <StatCard
+        title="🏢 Patrocínios"
+        value={moeda.format(resumo?.total_patrocinio ?? 0)}
+        tone={(resumo?.saldo ?? 0) >= 0 ? "green" : "red"}
         />
       </div>
 
